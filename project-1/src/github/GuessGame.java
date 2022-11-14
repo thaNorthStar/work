@@ -4,9 +4,9 @@ import java.util.*;
 
 import github.Ref.Players;
 
-class Players
+
+class Players  
 {
-	
 	int numOfPlayers;
 	
 	int getNumOfPlayers()
@@ -19,7 +19,7 @@ class Players
 	}
 }
 
-class Guesses
+class Guesses 
 {
 	int []guesses;
 	
@@ -29,7 +29,7 @@ class Guesses
 		for(int i=0;i<guesses.length;i++)
 		{
 			Scanner scan2 = new Scanner(System.in);
-			System.out.println("Player "+(1+i)+", what is your guess?");
+			System.out.println("Player "+(1+i)+", guess a number between 0-10.");
 			guesses[i]= scan2.nextInt();
 		}
 		return guesses;
@@ -37,13 +37,12 @@ class Guesses
 }
 
 
-class Ref
+class Ref2
 {
 	int players;
+	int []playerGuesses;
 	int answer;
 	int winner;
-	int []playerGuesses;
-	
 	
 	void collectPlayers()
 	{
@@ -57,32 +56,33 @@ class Ref
 		playerGuesses=g.getGuesses(players);
 	}
 	
-	int Answer()
+	int answer()
 	{
-	    Random rand = new Random();
-	    answer = rand.nextInt(11);
+		Random random = new Random();
+		answer = random.nextInt(11);
+		
 	    return answer;
 	}
 	
-	int Winner(int []guesses, int answer)
+	void winner()
 	{
-		Answer();
-		for(int i=0;i<guesses.length;i++)
+		
+		for(int i=0;i<playerGuesses.length;i++)
 		{
-			if(answer==guesses[i])
+			if(answer==playerGuesses[i])
 			{
 				winner=i;
+				System.out.println("The winning number is: "+answer);
+				System.out.println("Congrats to Player "+(i+1)+" !");
+				break;
 			}
-			
+			else 
+			{
+				System.out.println("The winning number is: "+answer);
+				System.out.println("Losers, please try again :)");
+				break;
+			}
 		}
-		return winner;
-	
-	}
-	
-	void Results()
-	{
-		System.out.println("The winning number is: "+answer);
-		System.out.println("The winner is Player"+winner+"!!!");
 	}
 }
 
@@ -90,9 +90,10 @@ public class GuessGame
 {
 	public static void main(String[] args)
 	{
-		Ref game = new Ref();
+		Ref2 game = new Ref2();
 		game.collectPlayers();
 		game.collectGuesses();
-		game.Results();
+		game.answer();
+		game.winner();
 	}
 }
