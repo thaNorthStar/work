@@ -1,5 +1,25 @@
 package github;
 
+class SubsetArray
+{
+	static boolean isSubset(int sub1[], int sub2[], int m, int n2)
+	{
+		int i=0;
+		int j=0;
+
+		for(i=0;i<n2;i++)
+		{
+			for(j=0;j<m;j++)
+				if(sub2[i]==sub1[j])
+					break;
+			if(j==m)
+				return false;
+		}
+		return true;
+	}
+}
+
+
 class SelectionSort
 {
 	void sort(int sel[])
@@ -219,6 +239,34 @@ public class Assignment2 {
 		ss.sort(sel);
 		System.out.println("selection sorted array");
 		ss.printArray(sel);
+		System.out.println();
+		
+//check whether an array is a subset of another array
+        int sub1[] = { 11, 1, 13, 21, 3, 7 };
+        int sub2[] = { 11, 3, 7, 1 };
+		for(int ele:sub1)
+		{
+			System.out.print(ele+" ");
+		}
+		System.out.println();
+		for(int ele:sub2)
+		{
+			System.out.print(ele+" ");
+		}
+		System.out.println();
+		System.out.println();
+        int m = sub1.length;
+        int n2 = sub2.length;
+        SubsetArray sa= new SubsetArray();
+
+ 
+        if (sa.isSubset(sub1, sub2, m, n2))
+            System.out.print("sub2[] is "
+                             + "subset of sub1[] ");
+        else
+            System.out.print("sub2[] is "
+                             + "not a subset of sub1[]");
+		
 		
 	}
 
